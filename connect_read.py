@@ -1,15 +1,41 @@
-import asyncio
-from bleak import BleakClient
+from bluetooth import *
 
-address = "40:2E:71:72:68:4F"
-MODEL_NBR_UUID = "0000ffe0-0000-1000-8000-00805f9b34fb"
+def receiveMsg():
+    uuid = "94f39d29-7d6d-437d-973b-fba39e49d4ee"
 
-async def run(address):
-	async with BleakClient(address) as client:
-		model_number = await client.read_gatt_char(MODEL_NBR_UUID)
-		print("Model Number: {0}".format("".join(map(chr, model_number))))
+    server_sock=BluetoothSocket( RFCOMM )
+    server_sock.bind(('',PORT_ANY))
+    server_sock.listen(1)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(run(address))
+    port = server_sock.getsockname()[1]
 
+    advertise_service( server_sock, "BtChat",
+            service_id = uuid,
+            service_classes = [ uuid, SERIAL_PORT_CLASS ],
+            profiles = [ SERIAL_PORT_PROFILE ] )
+			    
+    print("Waiting for connection : channel %d" % port)
+    client_sock, client_info = server_sock.accept()
+    print('accepted')
+    while True:          
+        print("Accepted connection from ", client_info)
+        try:
+            data = client_sock.recv(1024)
+            if len(data) == 0: break
+            print("received [%s]" % data)
+            print("send [%s]" % data[::-1])
+            client_sock.send(data[::-1])
+        except IOError:
+            print("disconnected")
+            client_sock.close()
+            server_sock.close()
+            print("all done")
+            break
 
+        except KeyboardInterrupt:
+            print("disconnected")
+            client_sock.close()
+            server_sock.close()
+            print("all done")
+            break
+receiveMsg()

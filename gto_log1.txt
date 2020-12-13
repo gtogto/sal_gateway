@@ -1,1 +1,12 @@
-char-write-req 0x0003 5B31583132333435365D
+connected By. ('192.168.0.10', 60927)
+received from ('192.168.0.10', 60927) instantPassword :: p1188229
+
+instant get password =  188229
+313838323239
+Hexiwear address:
+50:33:8B:F1:28:57
+Run gatttool...
+Connecting to 
+50:33:8B:F1:28:57
+ Connected!
+char-write-req 0x0003 5B31583138383232395D
