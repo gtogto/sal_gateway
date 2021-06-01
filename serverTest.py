@@ -2,8 +2,9 @@ import socket
 import time
 import requests, json
 
-HOST = '192.168.0.72'
-PORT = 8081        
+HOST = '192.168.0.2'
+#HOST = '192.168.0.10'
+PORT = 8081
 
 num = 1
 

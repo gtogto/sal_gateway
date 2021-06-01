@@ -1,11 +1,13 @@
 import socket
 
-HOST = '192.168.0.72'  
-PORT = 8081       
+HOST = '192.168.0.68'  
+PORT = 8088
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 client_socket.connect((HOST, PORT))
+
+print('connect gto')
 
 client_socket.sendall('Hello GW'.encode())
 

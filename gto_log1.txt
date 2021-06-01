@@ -1,12 +1,16 @@
-connected By. ('192.168.0.10', 60927)
-received from ('192.168.0.10', 60927) instantPassword :: p1188229
+connected By. ('192.168.0.10', 58975)
+received from ('192.168.0.10', 58975) p1131036
 
-instant get password =  188229
-313838323239
+instant origin password =  p1131036
+
+instant get password =  131036
+instant hex password =  313331303336
+Password Count =  1
 Hexiwear address:
 50:33:8B:F1:28:57
 Run gatttool...
 Connecting to 
 50:33:8B:F1:28:57
  Connected!
-char-write-req 0x0003 5B31583138383232395D
+char-write-req 0x0003 5B31583133313033365D
+1st pw done~!
